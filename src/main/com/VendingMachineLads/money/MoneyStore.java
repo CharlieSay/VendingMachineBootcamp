@@ -11,7 +11,7 @@ public class MoneyStore implements Money{
     }
 
     public void removeFundsFromStore(Item item){
-        currentMoneyInMachine -= item.getItemPrice();
+        currentMoneyInMachine = currentMoneyInMachine - item.getItemPrice();
     }
 
     public Double getCurrentMoneyInMachine() {
@@ -19,7 +19,7 @@ public class MoneyStore implements Money{
     }
 
     public void increaseAmountInMoneyStore(Number increaseValue){
-        currentMoneyInMachine += Money.returnValue(currentMoneyInMachine);
+        currentMoneyInMachine += (double) increaseValue;
     }
 
 

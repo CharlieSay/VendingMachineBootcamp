@@ -26,11 +26,8 @@ public class Item {
                 "Item Price" + itemPrice;
     }
 
-    public boolean dispence() {
-        if (Dispenser.dispenseItem(this)){
-            return true;
-        }else{
-            return false;
-        }
+    public boolean dispence(VendingMachine vendingMachine) {
+        vendingMachine.Dispenser.dispenseItem(this,vendingMachine.MoneyStore);
+        return true;
     }
 }

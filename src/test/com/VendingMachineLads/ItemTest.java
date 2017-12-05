@@ -1,10 +1,18 @@
 package com.VendingMachineLads;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 public class ItemTest {
+
+    VendingMachine vendingMachine;
+
+    @Before
+    public void setup(){
+        vendingMachine = new VendingMachine();
+    }
 
     @Test
     public void itemNameTest(){
@@ -29,13 +37,13 @@ public class ItemTest {
     @Test
     public void should_DispenseItem_WhenGivenFanta(){
         Item fanta = new Item("Fanta",1.10);
-        assertTrue(fanta.dispence());
+        assertTrue(fanta.dispence(vendingMachine));
     }
 
     @Test
     public void should_ReturnFalse_WhenGivenInvalidItemWithNoName(){
         Item falseItem = new Item("Fanta",0.00);
-        assertThat(falseItem.dispence(),is(false));
+        assertThat(falseItem.dispence(vendingMachine),is(false));
     }
 
 }
