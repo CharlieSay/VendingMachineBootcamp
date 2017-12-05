@@ -13,6 +13,7 @@ public class VendingMachineTest {
         assertNull(testObject.Dispenser);
         assertNull(testObject.MoneyStore);
         assertNull(testObject.Screen);
+        assertNull(testObject.ItemList);
     }
 
     @Test
@@ -24,6 +25,7 @@ public class VendingMachineTest {
         assertNotNull(testObject.Dispenser);
         assertNotNull(testObject.MoneyStore);
         assertNotNull(testObject.Screen);
+        assertNotNull(testObject.ItemList);
     }
 
 

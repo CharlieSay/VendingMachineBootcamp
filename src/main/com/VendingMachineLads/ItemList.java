@@ -15,6 +15,18 @@ public class ItemList {
         lastButtonNumber++;
     }
 
+    public Button returnButtonItem(int buttonNumber){
+        for (Button key : itemList.keySet()) {
+            if (key.getId() == buttonNumber){
+                return key;
+            }else{
+                continue;
+            }
+        }
+        return null;
+    }
+
+    @Deprecated
     public Item getItemFromList(Integer buttonRequest) {
         for (int i = 1; i <= itemList.size(); i++) {
             if (i == buttonRequest) {
@@ -24,14 +36,19 @@ public class ItemList {
         return null;
     }
 
-    public boolean getItemsFromList(MoneyStore moneyStore, Button button) {
+    public boolean getItemsFromList(VendingMachine vendingMachine, MoneyStore moneyStore, Button button) {
         Double moneyOfItemSpecified = button.item.getItemPrice();
         String nameOfItemSpecified = button.item.getItemName();
-        if (moneyOfItemSpecified >= moneyStore.getCurrentMoneyInMachine()){
-            VendingMachine.Screen.formatForScreen("Dispensed : " + nameOfItemSpecified);
-            return button.item.dispence();
+        Screen screen = vendingMachine.Screen;
+        if (moneyOfItemSpecified <= moneyStore.getCurrentMoneyInMachine()){
+           String dispenseConfirmation = screen.formatForScreen("Dispensed : " + nameOfItemSpecified);
+            String remainingMoney = screen.formatForScreen("Remaining Money : £"+moneyStore.getCurrentMoneyInMachine());
+            System.out.println(dispenseConfirmation);
+            System.out.println(remainingMoney);
+            return button.item.dispence(vendingMachine);
         }else{
-            VendingMachine.Screen.formatForScreen("Not enough Money");
+            String notEnoughMoneyConfirmation =  screen.formatForScreen("Not enough Money");
+            System.out.println(notEnoughMoneyConfirmation);
             return false;
         }
     }
