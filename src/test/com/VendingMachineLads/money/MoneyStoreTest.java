@@ -13,7 +13,7 @@ public class MoneyStoreTest {
 
     @Before
     public void setUp(){
-        testSubject = new MoneyStore(0.00);
+        testSubject = new MoneyStore(0);
     }
 
     @Test

@@ -3,7 +3,6 @@ package com.VendingMachineLads;
 import com.VendingMachineLads.money.MoneyStore;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class ItemList {
@@ -16,6 +15,18 @@ public class ItemList {
         lastButtonNumber++;
     }
 
+    public Button returnButtonItem(int buttonNumber){
+        for (Button key : itemList.keySet()) {
+            if (key.getId() == buttonNumber){
+                return key;
+            }else{
+                continue;
+            }
+        }
+        return null;
+    }
+
+    @Deprecated
     public Item getItemFromList(Integer buttonRequest) {
         for (int i = 1; i <= itemList.size(); i++) {
             if (i == buttonRequest) {
@@ -25,9 +36,21 @@ public class ItemList {
         return null;
     }
 
-    public List<Item> getItemsFromList(MoneyStore moneyStore) {
-        //get items and return any that cost less than moneyStore total
-        return null;
+    public boolean getItemsFromList(VendingMachine vendingMachine, MoneyStore moneyStore, Button button) {
+        Double moneyOfItemSpecified = button.item.getItemPrice();
+        String nameOfItemSpecified = button.item.getItemName();
+        Screen screen = vendingMachine.Screen;
+        if (moneyOfItemSpecified <= moneyStore.getCurrentMoneyInMachine()){
+           String dispenseConfirmation = screen.formatForScreen("Dispensed : " + nameOfItemSpecified);
+            String remainingMoney = screen.formatForScreen("Remaining Money : £"+moneyStore.getCurrentMoneyInMachine());
+            System.out.println(dispenseConfirmation);
+            System.out.println(remainingMoney);
+            return button.item.dispence(vendingMachine);
+        }else{
+            String notEnoughMoneyConfirmation =  screen.formatForScreen("Not enough Money");
+            System.out.println(notEnoughMoneyConfirmation);
+            return false;
+        }
     }
 }
 

@@ -1,13 +1,15 @@
 package com.VendingMachineLads;
 
+import com.VendingMachineLads.money.Money;
+
 public class Item {
 
     private String itemName = "";
     private Double itemPrice = 0.0;
 
-    public Item(String itemName, double itemPrice) {
+    public Item(String itemName, Number itemPrice) {
         this.itemName = itemName;
-        this.itemPrice = itemPrice;
+        this.itemPrice = Money.returnValue(itemPrice);
     }
 
     public String getItemName() {
@@ -20,13 +22,12 @@ public class Item {
 
     @Override
     public String toString() {
-        return "Item{" +
-                "itemName='" + itemName + '\'' +
-                ", itemPrice=" + itemPrice +
-                '}';
+        return "Item Name :'" + itemName + '\'' +
+                "Item Price" + itemPrice;
     }
 
-    public boolean dispence() {
-        return false;
+    public boolean dispence(VendingMachine vendingMachine) {
+        vendingMachine.Dispenser.dispenseItem(this,vendingMachine.MoneyStore);
+        return true;
     }
 }
