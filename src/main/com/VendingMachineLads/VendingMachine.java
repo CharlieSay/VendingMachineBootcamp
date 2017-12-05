@@ -1,6 +1,6 @@
 package com.VendingMachineLads;
 
-import com.VendingMachineLads.money.MoneyStore;
+import com.VendingMachineLads.money.CashPayment;
 
 //Customer, Vending Machine, Sale, Item, ItemList
 public class VendingMachine {
@@ -8,13 +8,13 @@ public class VendingMachine {
 
     public Dispenser Dispenser;
     public Screen Screen;
-    public MoneyStore MoneyStore;
+    public CashPayment CashPayment;
     public ItemList ItemList;
 
     public static void main(String[] args) {
         VendingMachine vendingMachine = new VendingMachine();
         vendingMachine.onStartUp();
-        vendingMachine.MoneyStore.increaseAmountInMoneyStore(1.30);
+        vendingMachine.CashPayment.increaseAmountInMoneyStore(1.30);
         Button buttonSelection = vendingMachine.ItemList.returnButtonItem(3);
         vendingMachine.buttonPress(buttonSelection);
     }
@@ -22,13 +22,13 @@ public class VendingMachine {
     public void onStartUp(){
         Dispenser = new Dispenser();
         Screen = new Screen();
-        MoneyStore = new MoneyStore(0);
+        CashPayment = new CashPayment(0);
         ItemList = new ItemList();
         itemListPopulate();
     }
 
     private void  buttonPress(Button button){
-        ItemList.getItemsFromList(this, MoneyStore,button);
+        ItemList.getItemsFromList(this, CashPayment,button);
     }
 
     private void itemListPopulate(){

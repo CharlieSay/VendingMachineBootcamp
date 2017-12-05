@@ -27,7 +27,7 @@ public class Item {
     }
 
     public boolean dispence(VendingMachine vendingMachine) {
-        vendingMachine.Dispenser.dispenseItem(this,vendingMachine.MoneyStore);
+        vendingMachine.Dispenser.dispenseItem(this,vendingMachine.CashPayment);
         return true;
     }
 }

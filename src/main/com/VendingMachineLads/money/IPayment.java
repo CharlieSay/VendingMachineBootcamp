@@ -1,7 +1,5 @@
 package com.VendingMachineLads.money;
 
 public interface IPayment {
-
-    void makePayment();
-
+    void makePayment(Double paymentValue);
 }

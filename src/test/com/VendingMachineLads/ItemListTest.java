@@ -1,7 +1,5 @@
 package com.VendingMachineLads;
 
-import com.VendingMachineLads.money.MoneyStore;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,7 +15,7 @@ public class ItemListTest {
     public void setup(){
         vendingMachine = new VendingMachine();
         vendingMachine.onStartUp();
-        vendingMachine.MoneyStore.increaseAmountInMoneyStore(5.00);
+        vendingMachine.CashPayment.increaseAmountInMoneyStore(5.00);
     }
 
     @Test
@@ -28,7 +26,7 @@ public class ItemListTest {
 
         instance.addToItemList(buttonOne,fanta);
 
-        boolean expected = instance.getItemsFromList(vendingMachine, vendingMachine.MoneyStore, buttonOne);
+        boolean expected = instance.getItemsFromList(vendingMachine, vendingMachine.CashPayment, buttonOne);
 
         assertTrue(expected);
     }
@@ -46,7 +44,7 @@ public class ItemListTest {
         instance.addToItemList(buttonTwo,coke);
         instance.addToItemList(buttonThree,sparklingWater);
 
-        boolean expected = instance.getItemsFromList(vendingMachine, vendingMachine.MoneyStore, buttonTwo);
+        boolean expected = instance.getItemsFromList(vendingMachine, vendingMachine.CashPayment, buttonTwo);
 
         assertTrue(expected);
     }
@@ -62,7 +60,7 @@ public class ItemListTest {
         vendingMachine.ItemList.addToItemList(buttonOne,fanta);
         vendingMachine.ItemList.addToItemList(buttonTwo,coke);
 
-        boolean expected = instance.getItemsFromList(vendingMachine, vendingMachine.MoneyStore, buttonTwo);
+        boolean expected = instance.getItemsFromList(vendingMachine, vendingMachine.CashPayment, buttonTwo);
 
         assertTrue(expected);
     }

@@ -7,13 +7,13 @@ import org.junit.Test;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
-public class MoneyStoreTest {
+public class CashPaymentTest {
 
-    MoneyStore testSubject;
+    CashPayment testSubject;
 
     @Before
     public void setUp(){
-        testSubject = new MoneyStore(0);
+        testSubject = new CashPayment(0);
     }
 
     @Test

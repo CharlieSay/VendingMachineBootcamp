@@ -1,6 +1,6 @@
 package com.VendingMachineLads;
 
-import com.VendingMachineLads.money.MoneyStore;
+import com.VendingMachineLads.money.CashPayment;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -36,13 +36,13 @@ public class ItemList {
         return null;
     }
 
-    public boolean getItemsFromList(VendingMachine vendingMachine, MoneyStore moneyStore, Button button) {
+    public boolean getItemsFromList(VendingMachine vendingMachine, CashPayment cashPayment, Button button) {
         Double moneyOfItemSpecified = button.item.getItemPrice();
         String nameOfItemSpecified = button.item.getItemName();
         Screen screen = vendingMachine.Screen;
-        if (moneyOfItemSpecified <= moneyStore.getCurrentMoneyInMachine()){
+        if (moneyOfItemSpecified <= cashPayment.getCurrentMoneyInMachine()){
            String dispenseConfirmation = screen.formatForScreen("Dispensed : " + nameOfItemSpecified);
-            String remainingMoney = screen.formatForScreen("Remaining Money : £"+moneyStore.getCurrentMoneyInMachine());
+            String remainingMoney = screen.formatForScreen("Remaining Money : £"+ cashPayment.getCurrentMoneyInMachine());
             System.out.println(dispenseConfirmation);
             System.out.println(remainingMoney);
             return button.item.dispence(vendingMachine);
