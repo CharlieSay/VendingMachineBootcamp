@@ -1,5 +1,6 @@
 package com.VendingMachineLads;
 
+import com.VendingMachineLads.Display.ConsoleDisplay;
 import com.VendingMachineLads.money.CashPayment;
 
 //Customer, Vending Machine, Sale, Item, ItemList
@@ -7,7 +8,7 @@ public class VendingMachine {
 
 
     public Dispenser Dispenser;
-    public Screen Screen;
+    public ConsoleDisplay ConsoleDisplay;
     public CashPayment CashPayment;
     public ItemList ItemList;
 
@@ -21,7 +22,7 @@ public class VendingMachine {
 
     public void onStartUp(){
         Dispenser = new Dispenser();
-        Screen = new Screen();
+        ConsoleDisplay = new ConsoleDisplay();
         CashPayment = new CashPayment(0);
         ItemList = new ItemList();
         itemListPopulate();

@@ -1,5 +1,6 @@
 package com.VendingMachineLads;
 
+import com.VendingMachineLads.Display.ConsoleDisplay;
 import com.VendingMachineLads.money.CashPayment;
 
 import java.util.HashMap;
@@ -39,15 +40,15 @@ public class ItemList {
     public boolean getItemsFromList(VendingMachine vendingMachine, CashPayment cashPayment, Button button) {
         Double moneyOfItemSpecified = button.item.getItemPrice();
         String nameOfItemSpecified = button.item.getItemName();
-        Screen screen = vendingMachine.Screen;
+        ConsoleDisplay consoleDisplay = vendingMachine.ConsoleDisplay;
         if (moneyOfItemSpecified <= cashPayment.getCurrentMoneyInMachine()){
-           String dispenseConfirmation = screen.formatForScreen("Dispensed : " + nameOfItemSpecified);
-            String remainingMoney = screen.formatForScreen("Remaining Money : £"+ cashPayment.getCurrentMoneyInMachine());
+           String dispenseConfirmation = consoleDisplay.formatForScreen("Dispensed : " + nameOfItemSpecified);
+            String remainingMoney = consoleDisplay.formatForScreen("Remaining Money : £"+ cashPayment.getCurrentMoneyInMachine());
             System.out.println(dispenseConfirmation);
             System.out.println(remainingMoney);
             return button.item.dispence(vendingMachine);
         }else{
-            String notEnoughMoneyConfirmation =  screen.formatForScreen("Not enough Money");
+            String notEnoughMoneyConfirmation =  consoleDisplay.formatForScreen("Not enough Money");
             System.out.println(notEnoughMoneyConfirmation);
             return false;
         }

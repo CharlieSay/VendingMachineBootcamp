@@ -1,18 +1,20 @@
-package com.VendingMachineLads;
+package com.VendingMachineLads.Display;
 
+import com.VendingMachineLads.Display.ConsoleDisplay;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runners.JUnit4;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
-public class ScreenTest {
+public class ConsoleDisplayTest {
 
-    Screen testObject;
+    ConsoleDisplay testObject;
 
     @Before
     public void setUp(){
-        testObject = new Screen();
+        testObject = new ConsoleDisplay();
     }
 
     @Test
@@ -26,4 +28,6 @@ public class ScreenTest {
 
         assertThat(result,is(shouldBe));
     }
+
+
 }
