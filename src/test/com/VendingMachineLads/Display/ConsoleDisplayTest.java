@@ -24,7 +24,7 @@ public class ConsoleDisplayTest {
                           "£1.40 Left, Selected Fanta\n" +
                           "=========================\n";
 
-        String result = testObject.formatForScreen(currentMoney);
+        String result = testObject.readInput(currentMoney);
 
         assertThat(result,is(shouldBe));
     }

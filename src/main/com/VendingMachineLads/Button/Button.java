@@ -1,12 +1,12 @@
-package com.VendingMachineLads;
+package com.VendingMachineLads.Button;
+
+import com.VendingMachineLads.Item;
 
 public class Button {
     int id;
-    Item item;
 
-    public Button(int id, Item item) {
+    public Button(int id) {
         this.id = id;
-        this.item = item;
     }
 
     public int getId() {

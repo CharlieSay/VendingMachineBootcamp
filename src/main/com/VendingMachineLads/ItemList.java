@@ -1,7 +1,10 @@
 package com.VendingMachineLads;
 
+import com.VendingMachineLads.Button.Button;
+import com.VendingMachineLads.Button.ItemButton;
 import com.VendingMachineLads.Display.ConsoleDisplay;
-import com.VendingMachineLads.money.CashPayment;
+import com.VendingMachineLads.Display.IScreen;
+import com.VendingMachineLads.Money.CashPayment;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -37,18 +40,19 @@ public class ItemList {
         return null;
     }
 
-    public boolean getItemsFromList(VendingMachine vendingMachine, CashPayment cashPayment, Button button) {
-        Double moneyOfItemSpecified = button.item.getItemPrice();
-        String nameOfItemSpecified = button.item.getItemName();
-        ConsoleDisplay consoleDisplay = vendingMachine.ConsoleDisplay;
+    public boolean getItemsFromList(VendingMachine vendingMachine, CashPayment cashPayment, ItemButton button) {
+        Double moneyOfItemSpecified = button.getItem().getItemPrice();
+        String nameOfItemSpecified = button.getItem().getItemName();
+        IScreen consoleDisplay = vendingMachine.getConsoleDisplay();
+
         if (moneyOfItemSpecified <= cashPayment.getCurrentMoneyInMachine()){
-           String dispenseConfirmation = consoleDisplay.formatForScreen("Dispensed : " + nameOfItemSpecified);
-            String remainingMoney = consoleDisplay.formatForScreen("Remaining Money : £"+ cashPayment.getCurrentMoneyInMachine());
-            System.out.println(dispenseConfirmation);
-            System.out.println(remainingMoney);
-            return button.item.dispence(vendingMachine);
+            consoleDisplay.readInput("Dispensed : " + nameOfItemSpecified);
+            consoleDisplay.readInput("Remaining Money : £"+ cashPayment.getCurrentMoneyInMachine());
+          //  System.out.println(dispenseConfirmation);
+           // System.out.println(remainingMoney);
+            return button.getItem().dispence(vendingMachine);
         }else{
-            String notEnoughMoneyConfirmation =  consoleDisplay.formatForScreen("Not enough Money");
+            String notEnoughMoneyConfirmation =   consoleDisplay.readInput("Not enough Money");
             System.out.println(notEnoughMoneyConfirmation);
             return false;
         }

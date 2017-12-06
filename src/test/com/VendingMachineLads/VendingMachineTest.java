@@ -1,31 +1,33 @@
 package com.VendingMachineLads;
 
+import com.VendingMachineLads.Display.ConsoleDisplay;
+import com.VendingMachineLads.Display.IScreen;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class VendingMachineTest {
+public class VendingMachineTest{
 
-    @Test
-    public void should_ReturnNull_WhenStartUpIsNotCalled(){
-        VendingMachine testObject = new VendingMachine();
-
-        assertNull(testObject.Dispenser);
-        assertNull(testObject.CashPayment);
-        assertNull(testObject.ConsoleDisplay);
-        assertNull(testObject.ItemList);
-    }
+//    @Test
+//    public void should_ReturnNull_WhenStartUpIsNotCalled(){
+//        IScreen Screen = new ConsoleDisplay();
+//        VendingMachine testObject = new VendingMachine(Screen);
+//
+//        assertNull(testObject.Dispenser);
+//        assertNull(testObject.CashPayment);
+//        assertNull(testObject.ConsoleDisplay);
+//        assertNull(testObject.ItemList);
+//    }
 
     @Test
     public void should_ReturnNotNull_WhenStartUpIsCalled(){
-        VendingMachine testObject = new VendingMachine();
+        IScreen Screen = new ConsoleDisplay();
+        VendingMachine testObject = new VendingMachine(Screen);
 
-        testObject.onStartUp();
-
-        assertNotNull(testObject.Dispenser);
-        assertNotNull(testObject.CashPayment);
-        assertNotNull(testObject.ConsoleDisplay);
-        assertNotNull(testObject.ItemList);
+        assertNotNull(testObject.getDispenser());
+        assertNotNull(testObject.getCashPayment());
+        assertNotNull(testObject.getConsoleDisplay());
+        assertNotNull(testObject.getItemList());
     }
 
 

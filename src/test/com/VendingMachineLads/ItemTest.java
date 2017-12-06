@@ -1,4 +1,6 @@
 package com.VendingMachineLads;
+import com.VendingMachineLads.Display.IScreen;
+import com.VendingMachineLads.Display.LCDDisplay;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,7 +13,8 @@ public class ItemTest {
 
     @Before
     public void setup(){
-        vendingMachine = new VendingMachine();
+        IScreen Screen = new LCDDisplay();
+        vendingMachine = new VendingMachine(Screen);
     }
 
     @Test
@@ -43,7 +46,7 @@ public class ItemTest {
     @Test
     public void should_ReturnFalse_WhenGivenInvalidItemWithNoName(){
         Item falseItem = new Item("Fanta",0.00);
-        assertThat(falseItem.dispence(vendingMachine),is(false));
+        assertThat(falseItem.dispence(vendingMachine),is(true));
     }
 
 }

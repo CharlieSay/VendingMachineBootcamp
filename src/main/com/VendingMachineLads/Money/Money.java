@@ -1,4 +1,4 @@
-package com.VendingMachineLads.money;
+package com.VendingMachineLads.Money;
 
 public interface Money {
 

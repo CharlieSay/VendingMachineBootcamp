@@ -1,6 +1,7 @@
 package com.VendingMachineLads;
 
-import org.junit.Assert;
+import com.VendingMachineLads.Button.Button;
+import com.VendingMachineLads.Button.ItemButton;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
@@ -11,7 +12,7 @@ public class ButtonTest {
     @Test
     public void shouldCreateButton() {
         Item bread = new Item("bread", 0.50);
-        Button button = new Button(1, bread);
+        ItemButton button = new ItemButton(1, bread);
 
         assertThat(button.getId(), is(1));
     }

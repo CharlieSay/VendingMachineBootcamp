@@ -1,5 +1,9 @@
 package com.VendingMachineLads;
 
+import com.VendingMachineLads.Button.Button;
+import com.VendingMachineLads.Button.ItemButton;
+import com.VendingMachineLads.Display.ConsoleDisplay;
+import com.VendingMachineLads.Display.IScreen;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,54 +17,54 @@ public class ItemListTest {
 
     @Before
     public void setup(){
-        vendingMachine = new VendingMachine();
-        vendingMachine.onStartUp();
-        vendingMachine.CashPayment.increaseAmountInMoneyStore(5.00);
+        IScreen Screen = new ConsoleDisplay();
+        vendingMachine = new VendingMachine(Screen);
+        vendingMachine.getCashPayment().increaseAmountInMoneyStore(5.00);
     }
 
     @Test
     public void testForItemAdd(){
-        ItemList instance = vendingMachine.ItemList;
+        ItemList instance = vendingMachine.getItemList();
         Item fanta = new Item("Fanta",1.10);
-        Button buttonOne = new Button(1, fanta);
+        ItemButton buttonOne = new ItemButton(1, fanta);
 
         instance.addToItemList(buttonOne,fanta);
 
-        boolean expected = instance.getItemsFromList(vendingMachine, vendingMachine.CashPayment, buttonOne);
+        boolean expected = instance.getItemsFromList(vendingMachine, vendingMachine.getCashPayment(), buttonOne);
 
         assertTrue(expected);
     }
     @Test
     public void testForMultipleItemsThenRetrieveSpecificItem(){
-        ItemList instance = vendingMachine.ItemList;
+        ItemList instance = vendingMachine.getItemList();
         Item fanta = new Item("Fanta",1.10);
-        Button buttonOne = new Button(1, fanta);
+        ItemButton buttonOne = new ItemButton(1, fanta);
         Item coke = new Item("Coke",1.20);
-        Button buttonTwo = new Button(2, coke);
+        ItemButton buttonTwo = new ItemButton(2, coke);
         Item sparklingWater = new Item("Sparking Water",0.70);
-        Button buttonThree = new Button(3, sparklingWater);
+        ItemButton buttonThree = new ItemButton(3, sparklingWater);
 
         instance.addToItemList(buttonOne,fanta);
         instance.addToItemList(buttonTwo,coke);
         instance.addToItemList(buttonThree,sparklingWater);
 
-        boolean expected = instance.getItemsFromList(vendingMachine, vendingMachine.CashPayment, buttonTwo);
+        boolean expected = instance.getItemsFromList(vendingMachine, vendingMachine.getCashPayment(), buttonTwo);
 
         assertTrue(expected);
     }
 
     @Test
     public void testButtonNumberAssign(){
-        ItemList instance = vendingMachine.ItemList;
+        ItemList instance = vendingMachine.getItemList();
         Item fanta = new Item("Fanta",1.10);
-        Button buttonOne = new Button(1, fanta);
+        ItemButton buttonOne = new ItemButton(1, fanta);
         Item coke = new Item("Coke",1.20);
-        Button buttonTwo = new Button(2, coke);
+        ItemButton buttonTwo = new ItemButton(2, coke);
 
-        vendingMachine.ItemList.addToItemList(buttonOne,fanta);
-        vendingMachine.ItemList.addToItemList(buttonTwo,coke);
+        vendingMachine.getItemList().addToItemList(buttonOne,fanta);
+        vendingMachine.getItemList().addToItemList(buttonTwo,coke);
 
-        boolean expected = instance.getItemsFromList(vendingMachine, vendingMachine.CashPayment, buttonTwo);
+        boolean expected = instance.getItemsFromList(vendingMachine, vendingMachine.getCashPayment(), buttonTwo);
 
         assertTrue(expected);
     }

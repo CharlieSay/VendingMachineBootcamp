@@ -1,4 +1,4 @@
-package com.VendingMachineLads.money;
+package com.VendingMachineLads.Money;
 
 import org.junit.After;
 import org.junit.Before;

@@ -1,35 +1,55 @@
 package com.VendingMachineLads;
 
+import com.VendingMachineLads.Button.Button;
+import com.VendingMachineLads.Button.ItemButton;
 import com.VendingMachineLads.Display.ConsoleDisplay;
-import com.VendingMachineLads.money.CashPayment;
+import com.VendingMachineLads.Display.IScreen;
+import com.VendingMachineLads.Money.CashPayment;
 
 //Customer, Vending Machine, Sale, Item, ItemList
 public class VendingMachine {
 
 
-    public Dispenser Dispenser;
-    public ConsoleDisplay ConsoleDisplay;
-    public CashPayment CashPayment;
-    public ItemList ItemList;
+    private Dispenser Dispenser;
+    private IScreen ConsoleDisplay;
+    private CashPayment CashPayment;
+    private ItemList ItemList;
 
-    public static void main(String[] args) {
-        VendingMachine vendingMachine = new VendingMachine();
-        vendingMachine.onStartUp();
-        vendingMachine.CashPayment.increaseAmountInMoneyStore(1.30);
-        Button buttonSelection = vendingMachine.ItemList.returnButtonItem(3);
-        vendingMachine.buttonPress(buttonSelection);
+    public com.VendingMachineLads.Dispenser getDispenser() {
+        return Dispenser;
     }
 
-    public void onStartUp(){
+    public IScreen getConsoleDisplay() {
+        return ConsoleDisplay;
+    }
+
+    public com.VendingMachineLads.Money.CashPayment getCashPayment() {
+        return CashPayment;
+    }
+
+    public com.VendingMachineLads.ItemList getItemList() {
+        return ItemList;
+    }
+
+    public static void main(String[] args) {
+        ConsoleDisplay consoleDisplay = new ConsoleDisplay();
+        VendingMachine vendingMachine = new VendingMachine(consoleDisplay);
+  //      vendingMachine.buttonPress(buttonSelection);
+    }
+
+    public VendingMachine(IScreen Screen){
+        ConsoleDisplay = Screen;
         Dispenser = new Dispenser();
-        ConsoleDisplay = new ConsoleDisplay();
         CashPayment = new CashPayment(0);
         ItemList = new ItemList();
         itemListPopulate();
     }
 
-    private void  buttonPress(Button button){
-        ItemList.getItemsFromList(this, CashPayment,button);
+    private void buttonPress(Button button){
+        if (button instanceof ItemButton){
+            ItemList.getItemsFromList(this, CashPayment,(ItemButton) button);
+        }
+
     }
 
     private void itemListPopulate(){
@@ -40,12 +60,12 @@ public class VendingMachine {
         Item Bread = new Item("Bread", 0.10);
         Item Yacht = new Item("Yacht", 9999.99);
 
-        ItemList.addToItemList(new Button(1,Fanta),Fanta);
-        ItemList.addToItemList(new Button(2,DrPepper), DrPepper);
-        ItemList.addToItemList(new Button(3,OasisRed), OasisRed);
-        ItemList.addToItemList(new Button(4,Lucozade), Lucozade);
-        ItemList.addToItemList(new Button(5,Bread), Bread);
-        ItemList.addToItemList(new Button(6,Yacht), Yacht);
+        ItemList.addToItemList(new ItemButton(1,Fanta),Fanta);
+        ItemList.addToItemList(new ItemButton(2,DrPepper), DrPepper);
+        ItemList.addToItemList(new ItemButton(3,OasisRed), OasisRed);
+        ItemList.addToItemList(new ItemButton(4,Lucozade), Lucozade);
+        ItemList.addToItemList(new ItemButton(5,Bread), Bread);
+        ItemList.addToItemList(new ItemButton(6,Yacht), Yacht);
 
     }
 }

@@ -1,8 +1,8 @@
-package com.VendingMachineLads.money;
+package com.VendingMachineLads.Money;
 
 import org.junit.Test;
 
-import static com.VendingMachineLads.money.Money.*;
+import static com.VendingMachineLads.Money.Money.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 

@@ -1,6 +1,4 @@
-package com.VendingMachineLads.money;
-
-import com.VendingMachineLads.Item;
+package com.VendingMachineLads.Money;
 
 public class CashPayment implements IPayment {
 
@@ -24,6 +22,12 @@ public class CashPayment implements IPayment {
 
     private boolean checkBalanceAgainstValue(Double balance, Double valueOfItem){
         return balance >= valueOfItem;
+    }
+
+    public Double returnChange(){
+        Double toReturn = currentMoneyInMachine;
+        currentMoneyInMachine = 0.00;
+        return toReturn;
     }
 
     @Override

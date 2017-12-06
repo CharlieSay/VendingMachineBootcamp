@@ -1,6 +1,6 @@
 package com.VendingMachineLads;
 
-import com.VendingMachineLads.money.Money;
+import com.VendingMachineLads.Money.Money;
 
 public class Item {
 
@@ -27,7 +27,7 @@ public class Item {
     }
 
     public boolean dispence(VendingMachine vendingMachine) {
-        vendingMachine.Dispenser.dispenseItem(this,vendingMachine.CashPayment);
+        vendingMachine.getDispenser().dispenseItem(this,vendingMachine.getCashPayment());
         return true;
     }
 }

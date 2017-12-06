@@ -2,27 +2,29 @@ package com.VendingMachineLads.Display;
 
 public class LCDDisplay implements IScreen {
 
-    public String LCD_FORMAT = "";
     public String displayOut = "";
 
     @Override
-    public void displayInputOnScreen() {
-        System.out.println(displayOut);
+    public void displayInputOnScreen(String s) {
+        System.out.println(s);
     }
 
     @Override
-    public void readInput(String s) {
-        inputMatcher(s);
-        displayOut += LCD_FORMAT + "\n";
+    public String readInput(String s) {
+        String LCD_Format = inputMatcher(s);
+        displayOut += LCD_Format + "\n";
         displayOut += "x+ "+s + " x+\n";
-        displayOut += LCD_FORMAT + "\n";
-        displayInputOnScreen();
+        displayOut += LCD_Format + "\n";
+        displayInputOnScreen(displayOut);
+        return displayOut;
     }
 
-    private void inputMatcher(String s){
+    private String inputMatcher(String s){
+        String returnLCDStringLength = "";
         for (int i = 0; i<s.length()/2; i++){
-            LCD_FORMAT += "x+";
+            returnLCDStringLength += "x+";
         }
-        LCD_FORMAT += "x+x+x+";
+        returnLCDStringLength += "x+x+x+";
+        return returnLCDStringLength;
     }
 }

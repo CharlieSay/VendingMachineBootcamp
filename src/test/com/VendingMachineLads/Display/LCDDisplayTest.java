@@ -3,9 +3,6 @@ package com.VendingMachineLads.Display;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
-
 public class LCDDisplayTest {
 
     LCDDisplay testObject;
@@ -17,10 +14,10 @@ public class LCDDisplayTest {
 
     @Test
     public void should_ReturnStringFormattedWithBars_WhenGivenString(){
-        String currentMoney = "nope";
-        String shouldBe = "=========================\n"+
-                "£1.40 Left, Selected Fanta\n" +
-                "=========================\n";
+        String currentMoney = "Released Yacht - £1 Left";
+        String shouldBe = "x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+\n"+
+                          "x+ Released Yacht - £1 Left x+\n" +
+                          "x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+\n";
 
        testObject.readInput(currentMoney);
 

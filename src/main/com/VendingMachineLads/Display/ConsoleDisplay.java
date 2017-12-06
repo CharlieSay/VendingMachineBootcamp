@@ -3,27 +3,20 @@ package com.VendingMachineLads.Display;
 public class ConsoleDisplay implements IScreen {
 
     private final String BREAKER_LINE = "=========================\n";
-    private String returner = "";
-
-    @Deprecated
-    public String formatForScreen(String s){
-        returner += BREAKER_LINE;
-        returner += s + "\n";
-        returner += BREAKER_LINE;
-        return returner;
-    }
-
+   // private String returner = "";
 
     @Override
-    public void displayInputOnScreen() {
+    public void displayInputOnScreen(String returner) {
         System.out.println(returner);
     }
 
     @Override
-    public void readInput(String s) {
-        returner += BREAKER_LINE;
-        returner += s + "\n";
-        returner += BREAKER_LINE;
-        displayInputOnScreen();
+    public String readInput(String s) {
+        String toDisplay = "";
+        toDisplay += BREAKER_LINE;
+        toDisplay += s + "\n";
+        toDisplay += BREAKER_LINE;
+        displayInputOnScreen(toDisplay);
+        return toDisplay;
     }
 }
